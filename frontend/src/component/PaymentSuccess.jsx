@@ -11,7 +11,7 @@ function PaymentSuccess() {
         <p className="text-gray-600 mb-4">Thank you for your purchase.</p>
         <div className="space-y-2">
           <Link
-            to="/orders/me"
+            to="/userprofile"
             className="inline-block bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600 transition-colors"
           >
             View Orders
