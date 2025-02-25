@@ -16,7 +16,7 @@ const OrderList = ({ orders, showStatusControl = true, showCancel = false, showS
   };
 
   const handleStatusChange = (orderId, newStatus) => {
-    dispatch(updateOrder({ id: orderId, status: newStatus }));
+    dispatch(updateOrder({ id: orderId, status: newStatus })).then(d=>console.log(d,"updated order"));
   };
 
   const handleCancel = (orderId) => {

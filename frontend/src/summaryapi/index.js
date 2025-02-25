@@ -1,5 +1,5 @@
-const backendUrl = "http://localhost:4000";
-
+const backendUrl = process.env.REACT_APP_BACKEND_URL;
+console.log(backendUrl, "backendUrl")
 const api = {
   // User-related endpoints
   signup: {

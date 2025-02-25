@@ -4,73 +4,77 @@ import UpdateProfile from '../component/UpdateProfile';
 import OrderList from '../component/OrderList';
 import UpdatePassword from '../component/UpdatePassword';
 import { myOrders } from '../slice/OrderSlice';
+import { FaUserEdit, FaLock, FaHistory } from 'react-icons/fa';
+import { Loader } from 'react-feather';
 
 function UserProfile() {
   const dispatch = useDispatch();
   const { userOrders, loading, error } = useSelector((state) => state.orderSlice);
-  const [showProfile, setShowProfile] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-  const [showOrders, setShowOrders] = useState(false);
+  const [activeTab, setActiveTab] = useState(''); 
 
   useEffect(() => {
-    if (showOrders) {
-      dispatch(myOrders())}
-  }, [dispatch, showOrders]);
+    if (activeTab === 'orders') {
+      dispatch(myOrders());
+    }
+  }, [dispatch, activeTab]);
 
   return (
-    <div className="max-w-4xl mx-auto p-6 bg-white shadow-md rounded-lg">
-      <h1 className="text-3xl font-bold text-gray-800 mb-6">User Profile</h1>
+    <div className="max-w-4xl mx-auto p-6 bg-white shadow-lg rounded-lg">
+      <h1 className="text-4xl font-bold text-gray-800 mb-8 text-center">User  Profile</h1>
       
-      <div className="space-y-4">
-        {/* Profile Update Section */}
+      {/* Navigation Tabs */}
+      <div className="flex-col md:flex-row justify-center items-center w-full space-y-4 sm:space-x-4 mb-6">
         <button 
-          onClick={() => setShowProfile(!showProfile)} 
-          className="w-full text-left bg-gray-200 p-4 rounded-lg hover:bg-gray-300 transition duration-200"
+          onClick={() => setActiveTab('profile')} 
+          className={`flex-1 p-4 m-4 rounded-lg ${activeTab === 'profile' ? 'bg-gray-300' : 'bg-gray-200'} hover:bg-gray-300 transition duration-200`}
         >
+          <FaUserEdit className="inline mr-2" />
           Update Profile
         </button>
-        {showProfile && (
-          <div className="bg-gray-50 p-6 rounded-lg shadow">
-            <UpdateProfile />
-          </div>
-        )}
-
-        {/* Password Update Section */}
         <button 
-          onClick={() => setShowPassword(!showPassword)} 
-          className="w-full text-left bg-gray-200 p-4 rounded-lg hover:bg-gray-300 transition duration-200"
+          onClick={() => setActiveTab('password')} 
+          className={`flex-1 p-4 m-4 rounded-lg ${activeTab === 'password' ? 'bg-gray-300' : 'bg-gray-200'} hover:bg-gray-300 transition duration-200`}
         >
+          <FaLock className="inline mr-2" />
           Update Password
         </button>
-        {showPassword && (
-          <div className="bg-gray-50 p-6 rounded-lg shadow">
-            <UpdatePassword />
-          </div>
-        )}
-
-        {/* Order History Section */}
         <button 
-          onClick={() => setShowOrders(!showOrders)} 
-          className="w-full text-left bg-gray-200 p-4 rounded-lg hover:bg-gray-300 transition duration-200"
+          onClick={() => setActiveTab('orders')} 
+          className={`flex-1 p-4  m-4 rounded-lg ${activeTab === 'orders' ? 'bg-gray-300' : 'bg-gray-200'} hover:bg-gray-300 transition duration-200`}
         >
+          <FaHistory className="inline mr-2" />
           Order History
         </button>
-        {showOrders && (
-          <div className="bg-gray-50 p-6 rounded-lg shadow">
-            {loading ? (
-              <div>Loading</div>
-            ) : error ? (
-              <p className="text-red-500">{error}</p>
-            ) : (
-              <OrderList 
-                orders={userOrders} 
-                showCancel={true} 
-                showStatus={false}
-              />
-            )}
-          </div>
-        )}
       </div>
+
+      {/* Content based on active tab */}
+      {activeTab === 'profile' && (
+        <div className="bg-gray-50 p-6 rounded-lg shadow">
+          <UpdateProfile />
+        </div>
+      )}
+      {activeTab === 'password' && (
+        <div className="bg-gray-50 p-6 rounded-lg shadow">
+          <UpdatePassword />
+        </div>
+      )}
+      {activeTab === 'orders' && (
+        <div className="bg-gray-50 p-6 rounded-lg shadow">
+          {loading ? (
+            <div className="flex justify-center items-center">
+              <Loader />
+            </div>
+          ) : error ? (
+            <p className="text-red-500">{error}</p>
+          ) : (
+            <OrderList 
+              orders={userOrders} 
+              showCancel={true} 
+              showStatus={false}
+            />
+          )}
+        </div>
+      )}
     </div>
   );
 }
