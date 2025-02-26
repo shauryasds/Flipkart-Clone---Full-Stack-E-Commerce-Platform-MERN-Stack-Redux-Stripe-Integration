@@ -1,5 +1,5 @@
 const Order = require('../models/orderModel');
-const ErrorHander = require('../utils/errorhandler');
+const ErrorHander = require('../utils/errorHandler');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
 const asyncHandler = require('express-async-handler');
 
