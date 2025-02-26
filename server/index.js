@@ -12,9 +12,10 @@ const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 app.use(cookieParser());
 app.use(cors({
-  origin:process.env.FRONTEND_URL,
-  credentials:true
-
+  origin: process.env.FRONTEND_URL,
+   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With']
 }));
 const  bodyParser = require('body-parser');
 const { stripeWebhook } = require('./controllers/orderController');
