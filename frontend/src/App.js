@@ -72,9 +72,9 @@ function App() {
           } />
   
           <Route path="/payment-verification/:orderId" element={
-            <ProtectedRoute>
+          
               <PaymentVerification />
-            </ProtectedRoute>
+           
           } />
   
           {/* Admin-only Route */}
