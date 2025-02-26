@@ -12,13 +12,18 @@ const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 app.use(cookieParser());
 console.log(process.env.FRONTEND_URL);
-app.use(cors({
-  origin: process.env.FRONTEND_URL,
-   credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, // Ensure this is set correctly
+  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders:['X-Total-Count']
-}));
+  exposedHeaders: ['X-Total-Count']
+};
+
+app.use(cors(corsOptions));
+
+// Handle preflight requests
+app.options('*', cors(corsOptions));
 const  bodyParser = require('body-parser');
 const { stripeWebhook } = require('./controllers/orderController');
 app.use(bodyParser.json({ limit: '10mb' }));
