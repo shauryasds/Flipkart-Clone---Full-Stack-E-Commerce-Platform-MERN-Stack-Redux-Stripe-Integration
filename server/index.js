@@ -11,6 +11,7 @@ const { connectDb } = require('./conf/database');
 const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
 app.use(cookieParser());
+console.log(process.env.FRONTEND_URL);
 app.use(cors({
   origin: process.env.FRONTEND_URL,
    credentials: true,
