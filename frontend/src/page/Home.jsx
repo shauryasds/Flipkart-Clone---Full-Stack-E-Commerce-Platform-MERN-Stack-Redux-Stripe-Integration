@@ -35,9 +35,9 @@ const Home = () => {
     <div className="bg-gray-50 min-h-screen">
       {/* Main Slideshow */}
       <div className="mx-0 mb-4 shadow-sm overflow-hidden">
-  <Link to="/category/all" className="block">
+  
     <SlideShow slideImages={slideImages} />
-  </Link>
+  
 </div>
   
       {/* Trending Deals Section */}
@@ -48,7 +48,7 @@ const Home = () => {
             
           </div>
           <div className="flex overflow-x-auto pb-4 gap-4 no-scrollbar">
-            {products.slice(-10).map((product) => (
+            {products.slice(-7).map((product) => (
               <Link 
                 to={`/product/${product._id}`}
                 key={product._id}
