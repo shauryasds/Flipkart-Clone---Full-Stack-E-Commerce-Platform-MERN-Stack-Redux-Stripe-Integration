@@ -23,8 +23,9 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 app.use(cookieParser());
-const  bodyParser = require('body-parser');
 const { stripeWebhook } = require('./controllers/orderController');
+app.post('/webhook', express.raw({ type: 'application/json' }), stripeWebhook);;
+const  bodyParser = require('body-parser');
 app.use(bodyParser.json({ limit: '10mb' }));
 app.use(bodyParser.urlencoded({ limit: '10mb', extended: true }));
 
@@ -52,7 +53,6 @@ app.use("/api",user);
 app.use("/api",product);
 app.use("/api",cart);
 app.use("/api",order);
-app.post('/webhook', express.raw({ type: 'application/json' }), stripeWebhook);;
 
 app.get('/', (req, res) => {
   res.send('Hello World!')
