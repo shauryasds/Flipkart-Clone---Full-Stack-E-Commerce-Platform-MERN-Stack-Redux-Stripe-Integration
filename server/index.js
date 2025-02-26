@@ -1,22 +1,7 @@
 const express = require('express')
+const cors = require('cors');
 const app = express()
 const port = 3000
-const cors = require('cors');
-const corsOptions = {
-  origin: process.env.FRONTEND_URL, // Ensure this is set correctly
-  credentials: true, // Allow credentials (cookies, authorization headers, etc.)
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
-  exposedHeaders: ['X-Total-Count']
-};
-
-app.use(cors(corsOptions));
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "*");
-  res.header("Access-Control-Allow-Methods", "GET, PUT, POST");
-  res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-  next();
-});
 const cookieParser = require('cookie-parser');
 require('dotenv').config();
 const user=require("./routes/userRoutes");
@@ -25,9 +10,19 @@ const order=require("./routes/orderRoutes");
 const cart=require("./routes/cartRoutes");
 const { connectDb } = require('./conf/database');
 const cloudinary = require('cloudinary').v2;
-app.use(cookieParser());
-console.log(process.env.FRONTEND_URL);
+if (!process.env.FRONTEND_URL) {
+  console.error('Missing FRONTEND_URL in environment variables');
+}
+const corsOptions = {
+  origin: process.env.FRONTEND_URL, 
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization', 'X-Requested-With'],
+  exposedHeaders: ['X-Total-Count']
+};
 
+app.use(cors(corsOptions));
+app.use(cookieParser());
 const  bodyParser = require('body-parser');
 const { stripeWebhook } = require('./controllers/orderController');
 app.use(bodyParser.json({ limit: '10mb' }));
