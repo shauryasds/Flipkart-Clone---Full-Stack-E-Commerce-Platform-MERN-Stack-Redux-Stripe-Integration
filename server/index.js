@@ -1,17 +1,7 @@
 const express = require('express')
 const app = express()
 const port = 3000
-const cookieParser = require('cookie-parser');
-require('dotenv').config();
-const user=require("./routes/userRoutes");
-const product=require("./routes/productRoutes");
-const order=require("./routes/orderRoutes");
-const cart=require("./routes/cartRoutes");
-const { connectDb } = require('./conf/database');
-const cloudinary = require('cloudinary').v2;
 const cors = require('cors');
-app.use(cookieParser());
-console.log(process.env.FRONTEND_URL);
 const corsOptions = {
   origin: process.env.FRONTEND_URL, // Ensure this is set correctly
   credentials: true, // Allow credentials (cookies, authorization headers, etc.)
@@ -22,8 +12,17 @@ const corsOptions = {
 
 app.use(cors(corsOptions));
 
-// Handle preflight requests
-app.options('*', cors(corsOptions));
+const cookieParser = require('cookie-parser');
+require('dotenv').config();
+const user=require("./routes/userRoutes");
+const product=require("./routes/productRoutes");
+const order=require("./routes/orderRoutes");
+const cart=require("./routes/cartRoutes");
+const { connectDb } = require('./conf/database');
+const cloudinary = require('cloudinary').v2;
+app.use(cookieParser());
+console.log(process.env.FRONTEND_URL);
+
 const  bodyParser = require('body-parser');
 const { stripeWebhook } = require('./controllers/orderController');
 app.use(bodyParser.json({ limit: '10mb' }));
