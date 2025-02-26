@@ -70,3 +70,5 @@ app.use((err, req, res, next) => {
     console.error("Error occured",err); 
     res.status(500).json({ message: 'Internal Server Error', error: err.message });
 });
+
+module.exports = app;
