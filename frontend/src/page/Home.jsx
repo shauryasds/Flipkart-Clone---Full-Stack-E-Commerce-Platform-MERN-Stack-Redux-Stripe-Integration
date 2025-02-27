@@ -76,7 +76,7 @@ const Home = () => {
               Showing {products.length} of {productsCount} products
             </div>
           </div>
-          { products.length === 0 ? (
+          { !products ? (
             <div className="text-center mt-8">
               <span className="flex items-center justify-center">
                 <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
