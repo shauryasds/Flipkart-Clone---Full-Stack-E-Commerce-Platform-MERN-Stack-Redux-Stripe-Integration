@@ -76,7 +76,7 @@ const Home = () => {
               Showing {products.length} of {productsCount} products
             </div>
           </div>
-          { !products ? (
+          { loading && products?.length ===0 ? (
             <div className="text-center mt-8">
               <span className="flex items-center justify-center">
                 <svg className="animate-spin h-5 w-5 mr-3" viewBox="0 0 24 24">
@@ -103,7 +103,7 @@ const Home = () => {
                 />
               </Link>
             ))}
-          </div>)
+          </div>)}
   
           {/* View More Button */}
           {products.length < productsCount && (
