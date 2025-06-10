@@ -44,10 +44,15 @@ function Navbar() {
         {/* Logo */}
         <div className='flex items-center'>
           <Link to="/">
-          {bgColor=== "bg-white"? <img src={logo} alt="Logo" className="w-full" />:
+          <span className="text-white font-extrabold text-2xl md:text-3xl tracking-wide">
+    <span className="text-yellow-300">Patna</span>
+    <span className="text-white">Kart</span>
+  </span>
+
+          {/* {bgColor=== "bg-white"? <img src={logo} alt="Logo" className="w-full" />:
             "PatnaKart"
             // <img src=""alt="Logo" className="w-20" />
-            }
+            } */}
           </Link>
         </div>
         {/* Search and User & Cart Section */}
@@ -89,7 +94,8 @@ function Navbar() {
               <FaRegUserCircle />
               {isUserTabOpen && <UserTab />}
             </span>
-            {user?.role==="admin" && ( 
+             
+            {user.role==="admin" && ( 
               <Link className=' hidden md:flex items-center' to="/Admindashboard">
                 <span className={`bg-white hover:bg-white/20 hover:text-white px-4 py-2 rounded-md text-black font-semibold text-sm md:text-base transition-colors`}>
                   Admin Panel
