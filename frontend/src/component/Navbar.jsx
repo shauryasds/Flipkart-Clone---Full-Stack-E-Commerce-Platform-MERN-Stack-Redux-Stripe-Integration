@@ -82,7 +82,7 @@ function Navbar() {
               <FaRegUserCircle />
               {isUserTabOpen && <UserTab />}
             </span>
-            {user.role==="admin" && ( 
+            {user && user.role==="admin" && ( 
               <Link className=' hidden md:flex items-center' to="/Admindashboard">
                 <span className={`bg-white hover:bg-white/20 hover:text-white px-4 py-2 rounded-md text-black font-semibold text-sm md:text-base transition-colors`}>
                   Admin Panel
