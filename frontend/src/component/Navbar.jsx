@@ -24,6 +24,11 @@ function Navbar() {
     dispatch(checkAuth());
   }, [dispatch]);
 
+  useEffect(() => {
+    console.log("User updated:", user);
+  }, [user]);
+  
+
  const bgColor="bg-blue-600";
 
   const toggleSearch = () => {
@@ -40,7 +45,9 @@ function Navbar() {
         <div className='flex items-center'>
           <Link to="/">
           {bgColor=== "bg-white"? <img src={logo} alt="Logo" className="w-full" />:
-            <img src="https://stock.adobe.com/in/images/pk-logo-company-logo-monogram-design-letters-p-and-k/309085340" alt="Logo" className="w-20" />}
+            "PatnaKart"
+            // <img src=""alt="Logo" className="w-20" />
+            }
           </Link>
         </div>
         {/* Search and User & Cart Section */}
