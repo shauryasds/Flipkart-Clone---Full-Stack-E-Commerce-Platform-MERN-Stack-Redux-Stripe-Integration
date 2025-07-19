@@ -1,4 +1,4 @@
-# Flipkart Clone - MERN E-Commerce Platform
+# PatnaKart - MERN E-Commerce Platform
 
 [![MERN Stack](https://img.shields.io/badge/MERN-Stack-%2343853D?logo=mongodb&logoColor=white)](https://mern.dev)
 [![React](https://img.shields.io/badge/React-18.2-%2361DAFB?logo=react)](https://react.dev)
@@ -7,6 +7,12 @@
 A full-stack e-commerce platform featuring product search/filters, user authentication, cart/checkout system, admin panel, and Stripe payments.
 
 ![Demo](https://via.placeholder.com/800x400?text=Flipkart+Clone+Demo)
+
+<img width="1470" height="838" alt="image" src="https://github.com/user-attachments/assets/e290ea86-748a-4f06-970a-2159c3c61b0d" />
+<img width="1470" height="838" alt="image" src="https://github.com/user-attachments/assets/026a6ebb-3de1-4fd2-92fc-7558e3a4f42e" />
+<img width="1470" height="838" alt="image" src="https://github.com/user-attachments/assets/a0e56dfa-5b12-4b7c-b1d2-9f3bc0422e2e" />
+<img width="1470" height="838" alt="image" src="https://github.com/user-attachments/assets/c3ce688e-d73d-4614-ace8-b2ae84f20334" />
+
 
 ## ✨ Features
 - Product Search & Filters
